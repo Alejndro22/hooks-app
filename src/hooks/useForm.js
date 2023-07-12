@@ -13,10 +13,15 @@ export const useForm = (initialForm = {}) => {
     });
   };
 
+  const onResetForm = () => {
+    setFormState(initialForm);
+  };
+
   // here spread to return formState properties, useful when unknow or a lot
   return {
     ...formState,
     formState,
     onInputChange,
+    onResetForm,
   };
 };
