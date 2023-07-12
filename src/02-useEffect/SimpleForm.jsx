@@ -19,11 +19,19 @@ export const SimpleForm = () => {
 
   useEffect(() => {
     console.log('useEffect was called');
-  });
+  }, []);
+
+  useEffect(() => {
+    console.log('useEffect was called by form change');
+  }, [formState]);
+
+  useEffect(() => {
+    console.log('useEffect was called by email change');
+  }, [email]);
 
   return (
     <>
-      <h1>Formulario simple</h1>
+      <h1>Basic form</h1>
       <hr />
 
       <input
