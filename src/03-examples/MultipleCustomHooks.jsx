@@ -1,9 +1,12 @@
+import { useCounter } from '../hooks/useCounter';
 import { useFetch } from '../hooks/useFetch';
 
 export const MultipleCustomHooks = () => {
+  const { counter, increment, decrement } = useCounter(1, 1);
   const { data, isLoading, hasError } = useFetch(
-    'https://rickandmortyapi.com/api/character/1'
+    `https://rickandmortyapi.com/api/character/${counter}`
   );
+
   // if data has values, destructure name and species
   // useful to  avoids errors when working with potentially null or undefined values
   const { name, species } = !!data && data;
@@ -21,8 +24,21 @@ export const MultipleCustomHooks = () => {
           <footer className='blockquote-footer'>{species}</footer>
         </blockquote>
       )}
+      <button
+        className='btn btn-primary mr-2'
+        disabled={isLoading || counter == 1}
+        onClick={() => decrement()}
+      >
+        Previous quote
+      </button>
 
-      <button className='btn btn-primary'>Next quote</button>
+      <button
+        className='btn btn-primary'
+        disabled={isLoading}
+        onClick={() => increment()}
+      >
+        Next quote
+      </button>
     </>
   );
 };
