@@ -12,17 +12,17 @@ export const CallbackHook = () => {
   // };
 
   //Thats why useCallback is useful
-  const incrementFunction = useCallback(() => {
+  const incrementFunction = useCallback((value) => {
     // Here this way doesn't work because counter value is memoized
     // setCounter(counter + 1);
 
     // Instead we use the callback for the setState to get the previous
     // value, thats why I always prefer this way to ensure to get the right value
-    setCounter((prevCounter) => prevCounter + 1);
+    setCounter((prevCounter) => prevCounter + value);
   }, []);
 
   useEffect(() => {
-    incrementFunction();
+    // incrementFunction();
   }, [incrementFunction]);
 
   return (
