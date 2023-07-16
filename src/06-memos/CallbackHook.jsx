@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ShowIncrement } from './ShowIncrement';
 
 export const CallbackHook = () => {
@@ -20,6 +20,10 @@ export const CallbackHook = () => {
     // value, thats why I always prefer this way to ensure to get the right value
     setCounter((prevCounter) => prevCounter + 1);
   }, []);
+
+  useEffect(() => {
+    incrementFunction();
+  }, [incrementFunction]);
 
   return (
     <>
