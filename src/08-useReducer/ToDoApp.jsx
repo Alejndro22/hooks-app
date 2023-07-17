@@ -1,21 +1,26 @@
 import { useReducer } from 'react';
 import { toDoReducer } from './toDoReducer';
+import { ToDoList, ToDoForm } from './';
 
 const initiaState = [
   {
     id: new Date().getTime(),
-    desciption: 'Collect soul stone',
+    description: 'Collect soul stone',
     done: false,
   },
   {
     id: new Date().getTime() * 3,
-    desciption: 'Collect soul stone',
+    description: 'Collect time stone',
     done: false,
   },
 ];
 
 export const ToDoApp = () => {
   const [toDos, dispatch] = useReducer(toDoReducer, initiaState);
+
+  const onNewToDo = (toDo) => {
+    console.log(toDo);
+  };
 
   return (
     <>
@@ -26,33 +31,15 @@ export const ToDoApp = () => {
 
       <div className='row'>
         <div className='col-7'>
-          <ul className='list-group'>
-            {toDos.map((toDo) => (
-              <li
-                key={toDo.id}
-                className='list-group-item d-flex justify-content-between'
-              >
-                <span className='align-self-center'>Item 1</span>
-                <button className='btn btn-danger'>Delete</button>
-              </li>
-            ))}
-          </ul>
+          {/* ToDoList */}
+          <ToDoList toDos={toDos} />
         </div>
 
         <div className='col-5'>
           <h4>Add toDo</h4>
           <hr />
-          <form>
-            <input
-              type='text'
-              placeholder='Next task?'
-              className='form-control'
-            />
-
-            <button type='submit' className='btn btn-outline-primary mt-4'>
-              Add
-            </button>
-          </form>
+          {/* ToDoForm, with onNewTask(toDo -object-) */}
+          <ToDoForm onNewTask={(value) => onNewToDo(value)} />
         </div>
       </div>
     </>
