@@ -1,22 +1,28 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { toDoReducer } from './toDoReducer';
 import { ToDoList, ToDoForm } from './';
 
 const initiaState = [
-  {
-    id: new Date().getTime(),
-    description: 'Collect soul stone',
-    done: false,
-  },
-  {
-    id: new Date().getTime() * 3,
-    description: 'Collect time stone',
-    done: false,
-  },
+  // {
+  //   id: new Date().getTime(),
+  //   description: 'Collect soul stone',
+  //   done: false,
+  // }
 ];
 
+// Get toDos from browser local storage, if null return []
+const init = () => {
+  return JSON.parse(localStorage.getItem('toDos') || []);
+};
+
 export const ToDoApp = () => {
-  const [toDos, dispatch] = useReducer(toDoReducer, initiaState);
+  // initialArg: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next init argument.
+  // optional init: The initializer function that should return the initial state. If it’s not specified, the initial state is set to initialArg. Otherwise, the initial state is set to the result of calling init(initialArg).
+  const [toDos, dispatch] = useReducer(toDoReducer, initiaState, init);
+
+  useEffect(() => {
+    localStorage.setItem('toDos', JSON.stringify(toDos) || []);
+  }, [toDos]);
 
   const onNewToDo = (toDo) => {
     const action = {
