@@ -19,7 +19,13 @@ export const ToDoApp = () => {
   const [toDos, dispatch] = useReducer(toDoReducer, initiaState);
 
   const onNewToDo = (toDo) => {
-    console.log(toDo);
+    const action = {
+      type: '[TODO] Add new task',
+      payload: toDo,
+    };
+
+    // dispatch is the function used to send action to the reducer
+    dispatch(action);
   };
 
   return (
