@@ -16,21 +16,33 @@ const init = () => {
 };
 
 export const ToDoApp = () => {
-  // initialArg: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next init argument.
-  // optional init: The initializer function that should return the initial state. If it’s not specified, the initial state is set to initialArg. Otherwise, the initial state is set to the result of calling init(initialArg).
+  // initialArg: The value from which the initial state is calculated. It can be a value of any type.
+  // How the initial state is calculated from it depends on the next init argument.
+
+  // init: The initializer function that should return the initial state. If it’s not specified,
+  // the initial state is set to initialArg. Otherwise, the initial state is set to the result of calling init(initialArg).
   const [toDos, dispatch] = useReducer(toDoReducer, initiaState, init);
 
   useEffect(() => {
     localStorage.setItem('toDos', JSON.stringify(toDos) || []);
   }, [toDos]);
 
-  const onNewToDo = (toDo) => {
+  const handleNewToDo = (toDo) => {
     const action = {
       type: '[TODO] Add new task',
       payload: toDo,
     };
 
     // dispatch is the function used to send action to the reducer
+    dispatch(action);
+  };
+
+  const handleRemoveToDo = (id) => {
+    const action = {
+      type: '[TODO] Remove task',
+      payload: id,
+    };
+
     dispatch(action);
   };
 
@@ -44,14 +56,19 @@ export const ToDoApp = () => {
       <div className='row'>
         <div className='col-7'>
           {/* ToDoList */}
-          <ToDoList toDos={toDos} />
+          {/* Here to handle remove task i need to pass props between children, ideally i'd use 
+              useContext hook, but for now i'd pass the props just like that */}
+          <ToDoList
+            toDos={toDos}
+            onRemoveTask={(value) => handleRemoveToDo(value)}
+          />
         </div>
 
         <div className='col-5'>
           <h4>Add toDo</h4>
           <hr />
           {/* ToDoForm, with onNewTask(toDo -object-) */}
-          <ToDoForm onNewTask={(value) => onNewToDo(value)} />
+          <ToDoForm onNewTask={(value) => handleNewToDo(value)} />
         </div>
       </div>
     </>
