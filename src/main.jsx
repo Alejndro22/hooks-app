@@ -1,4 +1,7 @@
 import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import { getRoutes } from './Routes';
+
 // import { HooksApp } from './HooksApp';
 // import { CounterApp } from './01-useState/CounterApp';
 // import { CounterCustomHook } from './01-useState/CounterCustomHook';
@@ -12,12 +15,14 @@ import ReactDOM from 'react-dom/client';
 // import { CallbackHook } from './06-memos/CallbackHook';
 // import { Parent } from './07-tarea-memo/Parent';
 // import './08-useReducer/intro-reducer';
-import { ToDoApp } from './08-useReducer/ToDoApp';
+// import { ToDoApp } from './08-useReducer/ToDoApp';
 
 import './index.css';
 
+const router = getRoutes();
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-  <ToDoApp />
+  <RouterProvider router={router} />
   // </React.StrictMode>
 );
