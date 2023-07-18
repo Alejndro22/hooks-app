@@ -46,6 +46,15 @@ export const ToDoApp = () => {
     dispatch(action);
   };
 
+  const handleToggleToDo = (id) => {
+    const action = {
+      type: '[TODO] Toggle task',
+      payload: id,
+    };
+
+    dispatch(action);
+  };
+
   return (
     <>
       <h1>
@@ -61,6 +70,7 @@ export const ToDoApp = () => {
           <ToDoList
             toDos={toDos}
             onRemoveTask={(value) => handleRemoveToDo(value)}
+            onToggleToDo={(value) => handleToggleToDo(value)}
           />
         </div>
 
