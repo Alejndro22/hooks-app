@@ -22,7 +22,7 @@ export const ToDoForm = ({ onNewTask }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} aria-label='form-test'>
       <input
         type='text'
         placeholder='Next task?'
