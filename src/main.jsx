@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import { getRoutes } from './Routes';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { routes } from './Routes';
 
 // import { HooksApp } from './HooksApp';
 // import { CounterApp } from './01-useState/CounterApp';
@@ -19,7 +19,7 @@ import { getRoutes } from './Routes';
 
 import './index.css';
 
-const router = getRoutes();
+const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
