@@ -8,6 +8,7 @@ export const ToDoItem = ({ toDo = {}, onRemoveTask, onToggleToDo }) => {
           toDo.done ? 'text-decoration-line-through' : ''
         }`}
         onClick={() => onToggleToDo(toDo.id)}
+        aria-label='span-test'
       >
         {toDo.description}
       </span>

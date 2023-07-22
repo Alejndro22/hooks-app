@@ -3,7 +3,7 @@ import { toDoReducer } from '../08-useReducer/toDoReducer';
 
 // Get toDos from browser local storage, if null return []
 const init = () => {
-  return JSON.parse(localStorage.getItem('toDos') || []);
+  return JSON.parse(localStorage.getItem('toDos')) || [];
 };
 
 export const useTodos = () => {
