@@ -11,7 +11,7 @@ export const HomePage = () => {
       </h1>
       <hr />
 
-      <pre>{JSON.stringify(user, null, 3)}</pre>
+      <pre aria-label='test-span'>{JSON.stringify(user, null, 3)}</pre>
     </>
   );
 };
